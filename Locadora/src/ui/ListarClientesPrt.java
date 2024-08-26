@@ -22,20 +22,21 @@ public class ListarClientesPrt implements Presenter {
 		char ordenacao = view.readData();
 		Resultado<List<Cliente>> resultado = null;
 
+		ordenacao = Character.toUpperCase(ordenacao);
 		switch (ordenacao)
 		{
-			case 'C' -> {
+			case 'C'-> {
 				resultado = controller.recuperarClientesOrdernadosPorCPF();
 			}
 			case 'N' -> {
 				resultado = controller.recuperarClientesOrdernadosPorNome();
 			}
 		}
-		
-		if (resultado.sucesso())
-			view.mostrarClientes(resultado.valor);
-		else
+
+		if (resultado.falha())
 			view.mostrarErro();
+		else
+			view.mostrarClientes(resultado.valor);
 	}
 }
 

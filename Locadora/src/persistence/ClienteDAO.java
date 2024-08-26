@@ -148,7 +148,7 @@ public class ClienteDAO implements IClienteDAO {
 		// Executa o comando que retorna um ResultSet
 		try (var conn = DBConnection.get();
 			 var stmt = conn.createStatement();
-			 var rs = stmt.executeQuery("select * from clientes order by name asc")) {
+			 var rs = stmt.executeQuery("select * from clientes order by nome asc")) {
 
 			var mapper = new ClienteMapper();
 			var clientes = new ArrayList<ClienteDTO>();
