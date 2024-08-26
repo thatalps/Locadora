@@ -44,9 +44,6 @@ public class PresenterFactory {
 			}
 		
 			case EXCLUIR_CLIENTE -> {
-				//a) Deve ser solicitado o CPF do cliente.
-				//b) Ao final, deve ser apresentada a mensagem “Exclusão bem-sucedida”
-				// ou “Cliente não encontrado”.
 				var repository = new ClienteRepository(new ClienteDAO());
 				var view = new ExcluirClienteView();
 				var controller = new ExcluirClienteCtrl(repository);
@@ -55,6 +52,9 @@ public class PresenterFactory {
 			}
 		
 			case LISTAR_CLIENTE -> {
+				//a) Alterar a funcionalidade para, inicialmente, ler do usuário a ordenação desejada: C-CPF ou N
+				//Nome.
+				//b) A lista de clientes deve ser apresentada de acordo com essa ordenação.
 				var repository = new ClienteRepository(new ClienteDAO());
 				var view = new ListarClientesView();
 				var controller = new ListarClientesCtrl(repository);
