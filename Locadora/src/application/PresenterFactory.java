@@ -59,7 +59,7 @@ public class PresenterFactory {
 				var view = new ListarClientesView();
 				var controller = new ListarClientesCtrl(repository);
 
-				return new ListarClientePrt(view, controller);
+				return new ListarClientesPrt(view, controller);
 			}
 		};
 		return null;
