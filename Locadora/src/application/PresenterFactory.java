@@ -2,14 +2,9 @@ package application;
 
 import domain.ClienteRepository;
 import persistence.ClienteDAO;
-import ui.CadastroClientePrt;
-import ui.CadastroClienteView;
-import ui.ListarClientesPrt;
-import ui.ListarClientesView;
-import ui.MenuPresenter;
-import ui.MenuView;
-import ui.Presenter;
+import ui.*;
 import usecases.CadastroClienteCtrl;
+import usecases.ExcluirClienteCtrl;
 import usecases.ListarClientesCtrl;
 
 /**
@@ -34,7 +29,7 @@ public class PresenterFactory {
 	public static Presenter get(Type type) {
 		switch(type) {
 			case MENU -> {
-				var view = new MenuView(); 
+				var view = new MenuView();
 				
 				return new MenuPresenter(view);
 			}
@@ -49,7 +44,14 @@ public class PresenterFactory {
 			}
 		
 			case EXCLUIR_CLIENTE -> {
-				return null;
+				//a) Deve ser solicitado o CPF do cliente.
+				//b) Ao final, deve ser apresentada a mensagem “Exclusão bem-sucedida”
+				// ou “Cliente não encontrado”.
+				var repository = new ClienteRepository(new ClienteDAO());
+				var view = new ExcluirClienteView();
+				var controller = new ExcluirClienteCtrl(repository);
+
+				return new ExcluirClientesPrt(view, controller);
 			}
 		
 			case LISTAR_CLIENTE -> {
@@ -57,7 +59,7 @@ public class PresenterFactory {
 				var view = new ListarClientesView();
 				var controller = new ListarClientesCtrl(repository);
 
-				return new ListarClientesPrt(view, controller);
+				return new ListarClientePrt(view, controller);
 			}
 		};
 		return null;

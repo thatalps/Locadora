@@ -27,7 +27,8 @@ public class MenuPresenter implements Presenter {
 				}
 				
 				case EXCLUIR_CLIENTE 	-> { 
-					System.out.println("Não implementado!"); 
+					var presenter = PresenterFactory.get(PresenterFactory.Type.EXCLUIR_CLIENTE);
+					presenter.run();
 				}
 				
 				case LISTAR_CLIENTE 	-> { 

@@ -2,12 +2,12 @@ package ui;
 
 import usecases.ListarClientesCtrl;
 
-public class ListarClientesPrt implements Presenter {
+public class ListarClientePrt implements Presenter {
 
 	private ListarClientesView view;
 	private ListarClientesCtrl controller;
 	
-	public ListarClientesPrt(ListarClientesView view, ListarClientesCtrl controller) {
+	public ListarClientePrt(ListarClientesView view, ListarClientesCtrl controller) {
 		super();
 		this.view = view;
 		this.controller = controller;
