@@ -35,4 +35,35 @@ public class ListarClientesCtrl {
 			return Resultado.erro(List.of(Erro.ERRO_BD));
 		}
 	}
+
+	/**
+	 * Recupera todos os clientes do cadastro ordenados por cpf
+	 *
+	 * @return Lista de clientes ou erro de acesso ao BD
+	 */
+	public Resultado<List<Cliente>> recuperarClientesOrdernadosPorCPF() {
+		try {
+			var clientes = repo.findAllOrderByCPF();
+
+			return Resultado.ok(clientes);
+		} catch (SQLException e) {
+			// Se ocorrer alguma exceção no BD, avisa
+			return Resultado.erro(List.of(Erro.ERRO_BD));
+		}
+	}
+	/**
+	 * Recupera todos os clientes do cadastro ordenados por nome
+	 *
+	 * @return Lista de clientes ou erro de acesso ao BD
+	 */
+	public Resultado<List<Cliente>> recuperarClientesOrdernadosPorNome() {
+		try {
+			var clientes  = repo.findAllOrderByName();
+
+			return Resultado.ok(clientes);
+		} catch (SQLException e) {
+			// Se ocorrer alguma exceção no BD, avisa
+			return Resultado.erro(List.of(Erro.ERRO_BD));
+		}
+	}
 }

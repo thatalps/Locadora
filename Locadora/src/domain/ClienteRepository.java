@@ -37,6 +37,44 @@ public class ClienteRepository implements Repository {
 		
 		return clientes;
 	}
+
+	/**
+	 * Retorna todos os clientes ordenado por nome
+	 *
+	 * @return Lista de clientes
+	 * @throws SQLException Exceção em caso de problemas no acesso ao BD
+	 */
+	public List<Cliente> findAllOrderByName() throws SQLException  {
+		// Busca todos os clientes do repositório
+		var dtos = dao.findAllOrderByName();
+
+		// Converte os DTOs vindo do repositório em clientes
+		var clientes = new ArrayList<Cliente>();
+
+		for (var dto : dtos)
+			clientes.add(create(dto));
+
+		return clientes;
+	}
+
+	/**
+	 * Retorna todos os clientes ordenado por cpf
+	 *
+	 * @return Lista de clientes
+	 * @throws SQLException Exceção em caso de problemas no acesso ao BD
+	 */
+	public List<Cliente> findAllOrderByCPF() throws SQLException  {
+		// Busca todos os clientes do repositório
+		var dtos = dao.findAllOrderByCPF();
+
+		// Converte os DTOs vindo do repositório em clientes
+		var clientes = new ArrayList<Cliente>();
+
+		for (var dto : dtos)
+			clientes.add(create(dto));
+
+		return clientes;
+	}
 	
 	/**
 	 * Retorna  um cliente com base no CPF
