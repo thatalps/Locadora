@@ -5,9 +5,7 @@ import domain.ClienteRepository;
 import domain.Erro;
 import domain.Resultado;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.SortedMap;
 
 /**
  * Classe que implementa a funcionalidade de exclusão de clientes
