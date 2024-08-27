@@ -36,7 +36,11 @@ public class MenuPresenter implements Presenter {
 					presenter.run();
 				}
 				
-				case CADASTRAR_VEICULO 	-> { System.out.println("Não implementado!"); }
+				case CADASTRAR_VEICULO 	-> {
+					var presenter = PresenterFactory.get(PresenterFactory.Type.CADASTRAR_VEICULO);
+					presenter.run();
+				}
+
 				case EXCLUIR_VEICULO 	-> { System.out.println("Não implementado!"); }
 				case LISTAR_VEICULO 	-> { System.out.println("Não implementado!"); }
 				case LOCAR_VEICULO 		-> { System.out.println("Não implementado!"); } 

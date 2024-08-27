@@ -1,9 +1,12 @@
 package application;
 
 import domain.ClienteRepository;
+import domain.VeiculoRepository;
 import persistence.ClienteDAO;
+import persistence.VeiculoDAO;
 import ui.*;
 import usecases.CadastroClienteCtrl;
+import usecases.CadastroVeiculoCtrl;
 import usecases.ExcluirClienteCtrl;
 import usecases.ListarClientesCtrl;
 
@@ -18,7 +21,9 @@ public class PresenterFactory {
 	public enum Type { MENU, 
 		               CADASTRAR_CLIENTE, 
 		               EXCLUIR_CLIENTE, 
-		               LISTAR_CLIENTE };
+		               LISTAR_CLIENTE,
+		               CADASTRAR_VEICULO
+	};
 	
     /**
      * Cria um presenter de acordo com o tipo solicitado
@@ -52,14 +57,18 @@ public class PresenterFactory {
 			}
 		
 			case LISTAR_CLIENTE -> {
-				//a) Alterar a funcionalidade para, inicialmente, ler do usuário a ordenação desejada: C-CPF ou N
-				//Nome.
-				//b) A lista de clientes deve ser apresentada de acordo com essa ordenação.
 				var repository = new ClienteRepository(new ClienteDAO());
 				var view = new ListarClientesView();
 				var controller = new ListarClientesCtrl(repository);
 
 				return new ListarClientesPrt(view, controller);
+			}
+			case CADASTRAR_VEICULO -> {
+				var repository = new VeiculoRepository(new VeiculoDAO());
+				var view = new CadastroVeiculoView();
+				var controller = new CadastroVeiculoCtrl(repository);
+
+				return new CadastroVeiculoPrt(view, controller);
 			}
 		};
 		return null;
