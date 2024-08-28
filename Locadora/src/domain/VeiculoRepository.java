@@ -4,6 +4,8 @@ import domain.dao.IVeiculoDAO;
 import domain.dao.VeiculoDTO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -13,6 +15,32 @@ public class VeiculoRepository implements Repository{
 
     public VeiculoRepository(IVeiculoDAO dao) {
         this.dao = dao;
+    }
+
+    public List<Veiculo> findAllOrderByModelo() throws SQLException  {
+
+        var dtos = dao.findAllOrderByModelo();
+
+        // Converte os DTOs vindo do repositório em clientes
+        var veiculos = new ArrayList<Veiculo>();
+
+        for (var dto : dtos)
+            veiculos.add(create(dto));
+
+        return veiculos;
+    }
+
+    public List<Veiculo> findAllOrderByPlaca() throws SQLException  {
+
+        var dtos = dao.findAllOrderByPlaca();
+
+        // Converte os DTOs vindo do repositório em clientes
+        var veiculos = new ArrayList<Veiculo>();
+
+        for (var dto : dtos)
+            veiculos.add(create(dto));
+
+        return veiculos;
     }
 
     public Veiculo findByPlaca(String placa) throws SQLException  {

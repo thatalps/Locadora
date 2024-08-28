@@ -5,8 +5,53 @@ import domain.dao.IVeiculoDAO;
 import domain.dao.VeiculoDTO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VeiculoDAO  implements IVeiculoDAO {
+
+    @Override
+    public List<VeiculoDTO> findAllOrderByModelo() throws SQLException  {
+
+        // Abre uma conexão com o BD
+        // Cria um statement
+        // Executa o comando que retorna um ResultSet
+        try (var conn = DBConnection.get();
+             var stmt = conn.createStatement();
+             var rs = stmt.executeQuery("select * from veiculos order by modelo asc")) {
+
+            var mapper = new VeiculoMapper();
+            var veiculos = new ArrayList<VeiculoDTO>();
+
+            // Para todos os regitros vindoos do BD, converte os dados
+            // do ResultSet em DTO usando o mapper
+            while (rs.next())
+                veiculos.add(mapper.map(rs));
+
+            return veiculos;
+        }
+    }
+    @Override
+    public List<VeiculoDTO> findAllOrderByPlaca() throws SQLException  {
+
+        // Abre uma conexão com o BD
+        // Cria um statement
+        // Executa o comando que retorna um ResultSet
+        try (var conn = DBConnection.get();
+             var stmt = conn.createStatement();
+             var rs = stmt.executeQuery("select * from veiculos order by placa asc")) {
+
+            var mapper = new VeiculoMapper();
+            var veiculos = new ArrayList<VeiculoDTO>();
+
+            // Para todos os regitros vindoos do BD, converte os dados
+            // do ResultSet em DTO usando o mapper
+            while (rs.next())
+                veiculos.add(mapper.map(rs));
+
+            return veiculos;
+        }
+    }
 
     @Override
     public VeiculoDTO findByPlaca(String placa) throws SQLException
@@ -33,11 +78,6 @@ public class VeiculoDAO  implements IVeiculoDAO {
                 return null;
             }
         }
-    }
-
-    @Override
-    public void add(Veiculo veiculo) throws SQLException {
-
     }
 
     @Override

@@ -20,7 +20,8 @@ public class PresenterFactory {
 		               EXCLUIR_CLIENTE, 
 		               LISTAR_CLIENTE,
 		               CADASTRAR_VEICULO,
-		               EXCLUIR_VEICULO
+		               EXCLUIR_VEICULO,
+		               LISTAR_VEICULO
 	};
 	
     /**
@@ -61,6 +62,7 @@ public class PresenterFactory {
 
 				return new ListarClientesPrt(view, controller);
 			}
+
 			case CADASTRAR_VEICULO -> {
 				var repository = new VeiculoRepository(new VeiculoDAO());
 				var view = new CadastroVeiculoView();
@@ -68,12 +70,21 @@ public class PresenterFactory {
 
 				return new CadastroVeiculoPrt(view, controller);
 			}
+
 			case EXCLUIR_VEICULO -> {
 				var repository = new VeiculoRepository(new VeiculoDAO());
 				var view = new ExcluirVeiculoView();
 				var controller = new ExcluirVeiculoCtrl(repository);
 
 				return new ExcluirVeiculoPrt(view, controller);
+			}
+
+			case LISTAR_VEICULO -> {
+				var repository = new VeiculoRepository(new VeiculoDAO());
+				var view = new ListarVeiculosView();
+				var controller = new ListarVeiculosCtrl(repository);
+
+				return new ListarVeiculosPrt(view, controller);
 			}
 		};
 		return null;
