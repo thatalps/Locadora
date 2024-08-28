@@ -13,3 +13,20 @@ CREATE TABLE clientes (
 	ddd 		integer 		NOT NULL, 
 	telefone 	integer 		NOT NULL
 );
+create table veiculos
+(
+    id            varchar(36) NOT NULL PRIMARY KEY,
+    placa         varchar(7),
+    modelo        varchar(30),
+    anofabricacao int,
+    valordiaria   double,
+    quilometragem int
+);
+
+CREATE TABLE locacoes
+(
+    id            varchar(36) NOT NULL PRIMARY KEY,
+    cpf           long,
+    placa         varchar(7),
+    datalocacao   LocalDateTime
+)
