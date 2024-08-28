@@ -80,4 +80,20 @@ public class VeiculoDAO  implements IVeiculoDAO {
 
         }
     }
+
+    @Override
+    public void delete(Veiculo veiculo) throws SQLException  {
+
+        // Abre uma conexão com o BD
+        // Cria um statement
+        try (var conn = DBConnection.get();
+             var stmt = conn.prepareStatement("delete from veiculos where id=?")) {
+
+            // Define ID do comando
+            stmt.setString(1, veiculo.getId());
+
+            // Executa o comando
+            stmt.execute();
+        }
+    }
 }

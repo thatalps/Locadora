@@ -56,5 +56,14 @@ public class VeiculoRepository implements Repository{
         else// veiculo já existe: atualiza no BD
             dao.update(veiculo);
     }
+    public void remove(Veiculo veiculo) throws SQLException  {
+        // Se veiculo tem ID, então deleta do BD
+        if (veiculo.getId() != null) {
+            dao.delete(veiculo);
+
+            // Seta o ID do objeto para nulo, porque ele não está mais no BD
+            veiculo.setId(null);
+        }
+    }
 
 }

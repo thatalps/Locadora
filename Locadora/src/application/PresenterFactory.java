@@ -5,10 +5,7 @@ import domain.VeiculoRepository;
 import persistence.ClienteDAO;
 import persistence.VeiculoDAO;
 import ui.*;
-import usecases.CadastroClienteCtrl;
-import usecases.CadastroVeiculoCtrl;
-import usecases.ExcluirClienteCtrl;
-import usecases.ListarClientesCtrl;
+import usecases.*;
 
 /**
  * Classe responsável por criar os presenters e sua estrutura
@@ -22,7 +19,8 @@ public class PresenterFactory {
 		               CADASTRAR_CLIENTE, 
 		               EXCLUIR_CLIENTE, 
 		               LISTAR_CLIENTE,
-		               CADASTRAR_VEICULO
+		               CADASTRAR_VEICULO,
+		               EXCLUIR_VEICULO
 	};
 	
     /**
@@ -69,6 +67,13 @@ public class PresenterFactory {
 				var controller = new CadastroVeiculoCtrl(repository);
 
 				return new CadastroVeiculoPrt(view, controller);
+			}
+			case EXCLUIR_VEICULO -> {
+				var repository = new VeiculoRepository(new VeiculoDAO());
+				var view = new ExcluirVeiculoView();
+				var controller = new ExcluirVeiculoCtrl(repository);
+
+				return new ExcluirVeiculoPrt(view, controller);
 			}
 		};
 		return null;

@@ -16,4 +16,7 @@ public interface IVeiculoDAO {
     void insert(Veiculo veiculo) throws SQLException;
 
     void update(Veiculo veiculo) throws SQLException;
+
+    void delete(Veiculo veiculo) throws SQLException;
+
 }
