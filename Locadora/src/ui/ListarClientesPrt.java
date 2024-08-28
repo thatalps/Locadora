@@ -31,6 +31,7 @@ public class ListarClientesPrt implements Presenter {
 			case 'N' -> {
 				resultado = controller.recuperarClientesOrdernadosPorNome();
 			}
+			default -> System.out.println("Opção inválida!");
 		}
 
 		if (resultado.falha())
