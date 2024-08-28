@@ -4,6 +4,8 @@ import domain.dao.ILocacaoDAO;
 import domain.dao.LocacaoDTO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class LocacaoRepository implements Repository{
@@ -11,6 +13,19 @@ public class LocacaoRepository implements Repository{
 
     public LocacaoRepository(ILocacaoDAO dao) {
         this.dao = dao;
+    }
+
+    public List<Locacao> findAll() throws SQLException  {
+        // Busca todas as locaoes
+        var dtos = dao.findAll();
+
+        // Converte os DTOs vindo do repositório em clientes
+        var locacaos = new ArrayList<Locacao>();
+
+        for (var dto : dtos)
+            locacaos.add(create(dto));
+
+        return locacaos;
     }
 
     public Locacao findByCPFPlaca(long cpf, String placa) throws SQLException {

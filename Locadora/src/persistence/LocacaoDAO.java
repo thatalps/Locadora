@@ -6,6 +6,8 @@ import domain.dao.LocacaoDTO;
 
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LocacaoDAO implements ILocacaoDAO {
 
@@ -48,6 +50,28 @@ public class LocacaoDAO implements ILocacaoDAO {
             // Executar o comando
             stmt.execute();
 
+        }
+    }
+
+    @Override
+    public List<LocacaoDTO> findAll() throws SQLException  {
+
+        // Abre uma conexão com o BD
+        // Cria um statement
+        // Executa o comando que retorna um ResultSet
+        try (var conn = DBConnection.get();
+             var stmt = conn.createStatement();
+             var rs = stmt.executeQuery("select * from locacoes")) {
+
+            var mapper = new LocacaoMapper();
+            var clientes = new ArrayList<LocacaoDTO>();
+
+            // Para todos os regitros vindos do BD, converte os dados
+            // do ResultSet em DTO usando o mapper
+            while (rs.next())
+                clientes.add(mapper.map(rs));
+
+            return clientes;
         }
     }
 

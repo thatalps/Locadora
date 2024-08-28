@@ -24,7 +24,8 @@ public class PresenterFactory {
 		               CADASTRAR_VEICULO,
 		               EXCLUIR_VEICULO,
 		               LISTAR_VEICULO,
-		               LOCAR_VEICULO
+		               LOCAR_VEICULO,
+		               LISTAR_LOCACAO
 	};
 	
     /**
@@ -98,6 +99,16 @@ public class PresenterFactory {
 				var controller = new LocacaoVeiculosCtrl(repository, repositorycliente,repositoryveiculo);
 
 				return new LocacaoVeiculosPrt(view, controller);
+			}
+
+			case LISTAR_LOCACAO -> {
+				var repository = new LocacaoRepository(new LocacaoDAO());
+				var repositorycliente = new ClienteRepository(new ClienteDAO());
+				var repositoryveiculo = new VeiculoRepository(new VeiculoDAO());
+				var view = new ListarLocacaoView();
+				var controller = new ListarLocacaoCtrl(repository, repositorycliente, repositoryveiculo);
+
+				return new ListarLocacaoPrt(view, controller);
 			}
 		};
 		return null;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Locacao extends Persistent{
-    private long cpf;
+    private Long cpf;
     private String placa;
     private LocalDateTime dataLocacao;
 
