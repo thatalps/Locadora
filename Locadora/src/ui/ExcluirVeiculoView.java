@@ -37,7 +37,7 @@ public class ExcluirVeiculoView {
      * Imprime mensagem de sucesso
      */
     public void setSucesso() {
-        System.out.println("\nCadastramento realizado com sucesso!");
+        System.out.println("\nExclusão bem-sucedida!");
     }
 
 }
