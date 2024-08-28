@@ -1,8 +1,10 @@
 package application;
 
 import domain.ClienteRepository;
+import domain.LocacaoRepository;
 import domain.VeiculoRepository;
 import persistence.ClienteDAO;
+import persistence.LocacaoDAO;
 import persistence.VeiculoDAO;
 import ui.*;
 import usecases.*;
@@ -21,7 +23,8 @@ public class PresenterFactory {
 		               LISTAR_CLIENTE,
 		               CADASTRAR_VEICULO,
 		               EXCLUIR_VEICULO,
-		               LISTAR_VEICULO
+		               LISTAR_VEICULO,
+		               LOCAR_VEICULO
 	};
 	
     /**
@@ -85,6 +88,16 @@ public class PresenterFactory {
 				var controller = new ListarVeiculosCtrl(repository);
 
 				return new ListarVeiculosPrt(view, controller);
+			}
+
+			case LOCAR_VEICULO -> {
+				var repository = new LocacaoRepository(new LocacaoDAO());
+				var repositorycliente = new ClienteRepository(new ClienteDAO());
+				var repositoryveiculo = new VeiculoRepository(new VeiculoDAO());
+				var view = new LocacaoVeiculosView();
+				var controller = new LocacaoVeiculosCtrl(repository, repositorycliente,repositoryveiculo);
+
+				return new LocacaoVeiculosPrt(view, controller);
 			}
 		};
 		return null;
