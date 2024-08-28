@@ -51,7 +51,7 @@ public class VeiculoBuilder {
         return erros.isEmpty() ?
                 Resultado.ok(resultVeiculo.valor) :
                 Resultado.erro(erros);
-//    }
+
 
     }
 
